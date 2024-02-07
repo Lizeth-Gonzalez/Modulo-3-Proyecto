@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    background-image: url(ai-generative-blurry-shopping-shelves-in-supermarkets-and-department-stores-realistic-image-ultra-hd-high-design-free-photo.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.Re{
+    display: flex;
+    justify-content: center;
+    padding: 90px;
+    font-size: 50px;
+    color: white;
+    background: #14213d;
+}
+
+.IN{
+    display: flex;
+    justify-content: center;
+    padding-left: 80px;
+    margin-left: 90px;
+}
+
+.I{
+    background: #14213d;
+    margin: 70PX;
+
+    
+}
