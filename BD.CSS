@@ -42,7 +42,7 @@ body{
 
 .boton:hover{
     cursor: pointer;
-    filter: grayscale(30%);
+    filter: grayscale(50%);
 }
 
 .Bienvenido{
@@ -75,6 +75,7 @@ body{
     margin-top: 107px;
     margin-bottom: 107px;
     padding: 40px;
+    box-shadow:3px 3px 3px 3px rgba(128, 71, 71, 0.959) ;
 }
 
 .Registro{
@@ -82,6 +83,7 @@ body{
     color: white;
     font-family: great vibes;
     font-size: 80px;
+    text-shadow: 2px 2px 2px rgba(128, 71, 71, 0.959); 
 }
 
 .IN{
@@ -98,6 +100,10 @@ body{
     background-color:gainsboro;
 }
 
+.IN:hover::placeholder{
+    color: #a53860;
+}
+
 .INI{
     font-family: styles;
     width: 90px;
@@ -111,4 +117,107 @@ body{
     cursor: pointer;
     background-color: #a53860;
     color: white;
+}
+
+.body{
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+
+.INIC{
+    font-family: styles;
+    width: 80px;
+    height: 40px;
+    font-size: 20px;
+    border: 0;
+    color: #a53860;
+    position: absolute;
+    left: 840px;
+    top: 470px;
+}
+
+.INIC:hover{
+    cursor: pointer;
+    background-color: #a53860;
+    color: white;
+}
+
+.Salir{
+    position: absolute;
+    left: .1px;
+    top: .1px;
+    background-color: #f0237c;
+    border: 0;
+    font-family: styles;
+    color: white;
+    width: 50px;
+}
+
+.Salir:hover{
+    cursor: pointer;
+    background-color: #a53860;
+}
+
+.Morado{
+    background-color: #a53860;
+    padding-left: 350px;
+    padding-right: 350px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.Ma{
+    font-family: great vibes;
+    display: flex;
+    justify-content: center;
+    font-size: 110px;
+    align-items: center;
+    margin-top: 50px;
+    color: white;
+    background-color: #a53860;
+    padding-left: 350px;
+    padding-right: 300px;
+}
+
+.B{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin: 20px;
+    padding: 40px;
+    border-radius: 0px 10px 0px 10px;
+    color: white;
+    font-family: styles;
+}
+
+.bu{
+    border: 0;
+    padding: 10px;
+}
+
+.bu:hover{
+    cursor: pointer;
+    background-color: #ff8fab;
+}
+
+.buu{
+    border: 0;
+    padding: 10px;
+}
+
+.buu:hover{
+    cursor: pointer;
+    background-color: orange;
+}
+
+.buuu{
+    border: 0;
+    padding: 10px;
+}
+
+.buuu:hover{
+    cursor: pointer;
+    background-color: #2ec4b6;
 }

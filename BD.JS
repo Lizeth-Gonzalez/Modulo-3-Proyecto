@@ -1,58 +1,70 @@
-// Prototipo de Alumno
-function alumno(nombre, apellidos, edad, materiasInscritas,) {
+// Definición del prototipo Alumno
+function Alumno(nombre, apellidos, edad) {
     this.nombre = nombre;
-    this.apellido = apellido;
+    this.apellidos = apellidos;
     this.edad = edad;
-    this.materiasInscritas = materiasInscritas;
+    this.materiasInscritas = [];
     this.calificaciones = {};
 }
 
-// Agregar Calificacion
-alumno.prototype.agregarCalificacion = function(materia, calificacion) {
-    this.calificaciones[materia].push(calificacion);
+// Método para inscribir una materia
+Alumno.prototype.inscribirMateria = function(materia) {
+    this.materiasInscritas.push(materia);
 }
 
-// Nueva instancia del prototipo Alumno con los datos proporcionados
-let nuevoAlumno = new alumno(nombre, apellidos, edad, materias);
+// Método para asignar calificación a una materia
+Alumno.prototype.asignarCalificacion = function(materia, calificacion) {
+    this.calificaciones[materia] = calificacion;
+}
 
-mostrarAlumno(nuevoAlumno);
+// Crear una instancia de Alumno
+let alumno1 = new Alumno("Carlos", "Jimenez", 17);
 
 // Agregar materias inscritas
-alumno.agregarMateria("Matemáticas");
-alumno.agregarMateria("Física");
-alumno.agregarMateria("Programación");
+alumno1.agregarMateria("Matemáticas");
+alumno1.agregarMateria("Física");
+alumno1.agregarMateria("Programación");
 
 // Agregar calificaciones en JavaScript
-alumno.agregarCalificacion(85);
-alumno.agregarCalificacion(90);
-alumno.agregarCalificacion(75);
+alumno1.agregarCalificacionJavaScript(85);
+alumno1.agregarCalificacionJavaScript(90);
+alumno1.agregarCalificacionJavaScript(75);
 
 // Imprimir los detalles del alumno
-console.log("Nombre:", alumno.nombre);
-console.log("Apellidos:", alumno.apellidos);
-console.log("Edad:", alumno.edad);
-console.log("Materias inscritas:", alumno.materiasInscritas);
-console.log("Calificaciones", alumno.calificaciones);
+console.log("Nombre:", alumno1.nombre);
+console.log("Apellidos:", alumno1.apellidos);
+console.log("Edad:", alumno1.edad);
+console.log("Materias inscritas:", alumno1.materiasInscritas);
+console.log("Calificaciones en JavaScript:", alumno1.calificacionesJavaScript);
 
-//Registro de alumno
-function AgregarAlumno() {}
 
-// Datos del formulario
-let Aombre = document.getElementById("Nombre").value;
-let Apellidos = document.getElementById("Apellidos").value;
-let Edad = document.getElementById("Adad").value;
-let Materias = document.getElementById("Materias").value.split(",");
+// Array para almacenar los alumnos dados de alta
+var listaAlumnos = [];
 
-// Limpiar el formulario después de agregar un alumno
-document.getElementById("nombre").value = "";
-document.getElementById("apellidos").value = "";
-document.getElementById("edad").value = "";
-document.getElementById("materias").value = "";
-}
+// Función para agregar un alumno
+function agregarAlumno() {
+    // Obtener los valores del formulario
+    let nombre = document.getElementById("nombre").value;
+    let apellidos = document.getElementById("apellido").value;
+    let edad = document.getElementById("edad").value;
 
-function mostrarAlumno(alumno) {
-    let listaAlumnos = document.getElementById("listaAlumnos");
-    let listItem = document.createElement("li");
-    listItem.textContent = `Nombre: ${alumno.nombre}, Apellidos: ${alumno.apellidos}, Edad: ${alumno.edad}, Materias: ${alumno.materiasInscritas.join(", ")}`;
-    listaAlumnos.appendChild(listItem);
+    // Validar que se ingresaron todos los datos
+    if (nombre && apellidos && edad) {
+        // Crear una instancia de Alumno
+        let nuevoAlumno = new Alumno(nombre, apellidos, edad);
+        
+        // Agregar el nuevo alumno a la lista
+        listaAlumnos.push(nuevoAlumno);
+
+        // Limpiar los campos del formulario
+        document.getElementById("nombre").value = "";
+        document.getElementById("apellidos").value = "";
+        document.getElementById("edad").value = "";
+
+        // Confirmar que el alumno se ha dado de alta correctamente
+        alert("Alumno dado de alta correctamente");
+    } else {
+        // Mostrar un mensaje de error si no se ingresaron todos los datos
+        alert("Por favor, ingrese todos los datos del alumno.");
+    }
 }
