@@ -38,6 +38,7 @@ body{
     color: white;
     font-size: 20px;
     font-family: styles;
+    text-decoration: none;
 }
 
 .boton:hover{
@@ -200,6 +201,7 @@ body{
 .bu:hover{
     cursor: pointer;
     background-color: #ff8fab;
+    color: white;
 }
 
 .buu{
@@ -210,6 +212,7 @@ body{
 .buu:hover{
     cursor: pointer;
     background-color: orange;
+    color: white;
 }
 
 .buuu{
@@ -220,4 +223,16 @@ body{
 .buuu:hover{
     cursor: pointer;
     background-color: #2ec4b6;
+    color: white;
+}
+
+.Regresar{
+    position: absolute;
+    top: 520px;
+    font-size: 20px;
+    background-color: #a53860;
+}
+
+.Regresar:hover{
+    background-color: white;
 }
