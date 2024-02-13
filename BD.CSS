@@ -73,7 +73,7 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: rgba(165, 56, 96, 0.5); 
-    margin-top: 107px;
+    margin-top: 35px;
     margin-bottom: 107px;
     padding: 40px;
     box-shadow:3px 3px 3px 3px rgba(128, 71, 71, 0.959) ;
@@ -122,7 +122,7 @@ body{
 
 .body{
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size:cover;
 }
 
 .INIC{
@@ -132,9 +132,11 @@ body{
     font-size: 20px;
     border: 0;
     color: #a53860;
-    position: absolute;
-    left: 840px;
-    top: 470px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 260px;
+    top: 0px;
 }
 
 .INIC:hover{
@@ -191,7 +193,9 @@ body{
     border-radius: 0px 10px 0px 10px;
     color: white;
     font-family: styles;
+    background-color: #2ec4b6;
 }
+
 
 .bu{
     border: 0;
@@ -228,11 +232,28 @@ body{
 
 .Regresar{
     position: absolute;
-    top: 520px;
+    top: 250px;
     font-size: 20px;
     background-color: #a53860;
 }
 
-.Regresar:hover{
-    background-color: white;
+.lis{
+    background-color: rgba(165, 56, 96, 0);
+}
+
+.ul{
+    font-family: styles;
+    font-size: x-large;
+    color: #a53860;
+}
+
+li{
+    background-color:rgba(165, 56, 96, 0) ;
+    padding-left: 40px;
+}
+
+.INICIO{
+    border: 0;
+    border-radius: 0% 10% 0% 10%;
+    padding: 5px;
 }

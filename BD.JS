@@ -61,7 +61,6 @@ function agregarAlumno() {
         document.getElementById("apellidos").value = "";
         document.getElementById("edad").value = "";
 
-        // Confirmar que el alumno se ha dado de alta correctamente
         alert("Alumno dado de alta correctamente");
     } else {
         // Mostrar un mensaje de error si no se ingresaron todos los datos

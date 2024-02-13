@@ -6,20 +6,27 @@
     <title>Registro</title>
     <link rel="stylesheet" href="BD.CSS">
 </head>
-<body background="photo-1522383225653-ed111181a951.avif" class="body">
-    <div class="RE">
+<body background="./Imagenes/photo-1522383225653-ed111181a951.avif" class="body">
+    <div id="formulario" class="RE">
+        <h2 class="Registro">Registro De Alumno</h2>
         <br>
-        <h1 class="Registro">Registro De Alumno</h1>
+        <input type="text" id="nombre" placeholder="Nombre" class="IN" required>
         <br>
-        <input type="text" placeholder="Nombre" class="IN" id="nombre">
+        <input type="text" id="apellidos" placeholder="Apellido" class="IN" required>
         <br>
-        <input type="text" placeholder="Apellido" class="IN" id="apellido">
+        <input type="number" id="edad" placeholder="Edad" class="IN" required>
         <br>
-        <input type="number" placeholder="Edad" class="IN" id="edad">
-        <br>
-        <button class="INI" onclick="agregarAlumno()">Registrar</button>
-        <a href="Opciones.HTML"><button class="INIC">Más</button></a>
+        <button onclick="registrarAlumno()" class="INI">Registrar</button>
+        <div class="INIC" style="align-items: center;"><a href="Opciones.HTML"><button class="INI">Más</button></a></div>
+        <br> 
+        
+        <div id="alumnos" class="lis">
+            <h2 class="Registro">Alumnos Registrados</h2>
+            <ul id="lista-alumnos" class="ul">
+            </ul>
+        </div>
+       
     </div>
-    <script src="BD.JS"></script>
+    <script src="Florencio.JS"></script>
 </body>
 </html>
