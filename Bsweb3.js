@@ -239,7 +239,7 @@ function mostrarAlumnosOrdenadas(listaOrdenada) {
     });
 }
 
-// Funciones auxiliares para cálculo y ordenamiento
+// Cálculo y ordenamiento
 function obtenerPromedioAlumno(nombre, apellido) {
     let alumno = alumnos.find(alumno => alumno.nombre.toLowerCase() === nombre.toLowerCase() && alumno.apellidos.toLowerCase() === apellido.toLowerCase());
     if (!alumno) return "Alumno no encontrado";
@@ -269,6 +269,24 @@ function calcularSumaCalificaciones(alumno) {
     let calificaciones = Object.values(alumno.calificaciones);
     let suma = calificaciones.reduce((total, calificacion) => total + parseFloat(calificacion), 0);
     return suma;
+}
+
+function obtenerListaAlumnosOrdenDesc() {
+    let listaOrdenada = alumnos.slice().sort((a, b) => {
+        let sumaA = calcularSumaCalificaciones(a);
+        let sumaB = calcularSumaCalificaciones(b);
+        return sumaB - sumaA;
+    });
+    return listaOrdenada;
+}
+
+function obtenerListaAlumnosOrdenAsc() {
+    let listaOrdenada = alumnos.slice().sort((a, b) => {
+        let sumaA = calcularSumaCalificaciones(a);
+        let sumaB = calcularSumaCalificaciones(b);
+        return sumaA - sumaB;
+    });
+    return listaOrdenada;
 }
 
 
