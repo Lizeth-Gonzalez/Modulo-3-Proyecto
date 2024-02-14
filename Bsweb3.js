@@ -161,3 +161,13 @@ function obtenerListaAlumnosOrdenEdadDesc() {
     let listaOrdenada = alumnos.slice().sort((a, b) => b.edad - a.edad);
     return listaOrdenada;
 }
+
+function MostrarListaOrdenada(){
+
+}
+
+function MostrarCalificaciones(){
+
+}
+
+
