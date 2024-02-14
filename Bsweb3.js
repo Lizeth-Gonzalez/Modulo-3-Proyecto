@@ -19,10 +19,15 @@ function registrarAlumno() {
     let apellidos = document.getElementById("apellidos").value;
     let edad = document.getElementById("edad").value;
 
-    let nuevoAlumno = new Alumno(nombre, apellidos, edad);
-    alumnos.push(nuevoAlumno);
-    mostrarAlumnos();
-    limpiarFormulario();
+    if (nombre.trim() !== '' && apellidos.trim() !== '' && edad.trim() !== '') {
+        let nuevoAlumno = new Alumno(nombre, apellidos, edad);
+        alumnos.push(nuevoAlumno);
+        mostrarAlumnos();
+        limpiarFormulario();
+        alert("Alumno dado de alta correctamente");
+    } else {
+        alert("Por favor, ingrese todos los datos del alumno");
+    }
 }
 
 function inscribirAlumnoAGrupo() {
@@ -33,7 +38,7 @@ function inscribirAlumnoAGrupo() {
         grupos[grupo].alumnos.push(alumnos[alumnoIndex]);
         mostrarGrupos();
     } else {
-        alert("Indice de alumno o nombre de grupo incorrecto");
+        alert("Indice de alumno/nombre de grupo incorrecto o campo vacio");
     }
 }
 
@@ -47,7 +52,7 @@ function asignarCalificaciones() {
         mostrarAlumnos();
         limpiarFormularioCal();
     } else {
-        alert("Indice de alumno incorrecto");
+        alert("Indice/materia de alumno incorrecto o campo vacio");
     }
 }
 
@@ -68,6 +73,12 @@ function mostrarAlumnos() {
         li.textContent = `${index}: ${alumno.nombre} ${alumno.apellidos} - Edad: ${alumno.edad}`;
         listaAlumnos.appendChild(li);
     });
+}
+
+function limpiarFormularioCal() {
+    document.getElementById("alumnoIndexCal").value = "";
+    document.getElementById("materia").value = "";
+    document.getElementById("calificacion").value = "";
 }
 
 function mostrarGrupos() {
@@ -163,11 +174,101 @@ function obtenerListaAlumnosOrdenEdadDesc() {
 }
 
 function MostrarListaOrdenada(){
-
+    
 }
+
+console.log(alumnos);
 
 function MostrarCalificaciones(){
 
+}
+
+
+//Buscador
+
+
+
+function filtrarAlumnos() {
+    let textoBusqueda = document.getElementById('buscador').value.toLowerCase();
+    let alumnosFiltrados = alumnos.filter(alumno =>
+        alumno.nombre.toLowerCase().includes(textoBusqueda) || alumno.apellidos.toLowerCase().includes(textoBusqueda)
+    );
+    mostrarAlumnosFiltrados(alumnosFiltrados);
+}
+
+function mostrarAlumnosFiltrados(alumnosFiltrados) {
+    let listaAlumnos = document.getElementById("lista-alumnos");
+    listaAlumnos.innerHTML = "";
+    alumnosFiltrados.forEach((alumno, index) => {
+        let li = document.createElement("li");
+        li.textContent = `${index}: ${alumno.nombre} ${alumno.apellidos} - Edad: ${alumno.edad}`;
+        listaAlumnos.appendChild(li);
+    });
+}
+
+function calcularPromedioAlumno() {
+    let nombre = prompt("Ingrese el nombre del alumno:");
+    let apellido = prompt("Ingrese el apellido del alumno:");
+    let promedio = obtenerPromedioAlumno(nombre, apellido);
+    alert(`El promedio del alumno ${nombre} ${apellido} es: ${promedio}`);
+}
+
+function calcularPromedioGrupo() {
+    let nombreGrupo = prompt("Ingrese el nombre del grupo:");
+    let promedio = obtenerPromedioGrupo(nombreGrupo);
+    alert(`El promedio del grupo ${nombreGrupo} es: ${promedio}`);
+}
+
+function ordenarAscendente() {
+    let listaOrdenada = obtenerListaAlumnosOrdenAsc();
+    mostrarAlumnosOrdenadas(listaOrdenada);
+}
+
+function ordenarDescendente() {
+    let listaOrdenada = obtenerListaAlumnosOrdenDesc();
+    mostrarAlumnosOrdenadas(listaOrdenada);
+}
+
+function mostrarAlumnosOrdenadas(listaOrdenada) {
+    let listaAlumnos = document.getElementById("lista-alumnos");
+    listaAlumnos.innerHTML = "";
+    listaOrdenada.forEach((alumno, index) => {
+        let li = document.createElement("li");
+        li.textContent = `${index}: ${alumno.nombre} ${alumno.apellidos} - Edad: ${alumno.edad}`;
+        listaAlumnos.appendChild(li);
+    });
+}
+
+// Funciones auxiliares para cálculo y ordenamiento
+function obtenerPromedioAlumno(nombre, apellido) {
+    let alumno = alumnos.find(alumno => alumno.nombre.toLowerCase() === nombre.toLowerCase() && alumno.apellidos.toLowerCase() === apellido.toLowerCase());
+    if (!alumno) return "Alumno no encontrado";
+    let calificaciones = Object.values(alumno.calificaciones);
+    if (calificaciones.length === 0) return "No hay calificaciones registradas para este alumno";
+    let suma = calificaciones.reduce((total, calificacion) => total + parseFloat(calificacion), 0);
+    let promedio = suma / calificaciones.length;
+    return promedio.toFixed(2);
+}
+
+function obtenerPromedioGrupo(nombreGrupo) {
+    let grupo = grupos[nombreGrupo];
+    if (!grupo) return "Grupo no encontrado";
+    let calificacionesTotales = 0;
+    let cantidadCalificaciones = 0;
+    grupo.alumnos.forEach(alumno => {
+        let calificaciones = Object.values(alumno.calificaciones);
+        calificacionesTotales += calificaciones.reduce((total, calificacion) => total + parseFloat(calificacion), 0);
+        cantidadCalificaciones += calificaciones.length;
+    });
+    if (cantidadCalificaciones === 0) return "No hay calificaciones registradas en este grupo";
+    let promedio = calificacionesTotales / cantidadCalificaciones;
+    return promedio.toFixed(2);
+}
+
+function calcularSumaCalificaciones(alumno) {
+    let calificaciones = Object.values(alumno.calificaciones);
+    let suma = calificaciones.reduce((total, calificacion) => total + parseFloat(calificacion), 0);
+    return suma;
 }
 
 
