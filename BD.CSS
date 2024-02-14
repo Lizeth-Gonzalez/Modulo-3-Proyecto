@@ -43,7 +43,7 @@ body{
 
 .boton:hover{
     cursor: pointer;
-    filter: grayscale(50%);
+    filter: grayscale(55%);
 }
 
 .Bienvenido{
