@@ -222,11 +222,13 @@ function calcularPromedioGrupo() {
 function ordenarAscendente() {
     let listaOrdenada = obtenerListaAlumnosOrdenAsc();
     mostrarAlumnosOrdenadas(listaOrdenada);
+    alert("Ordenar por Calificaciones *Ascendente: " + listaOrdenada);
 }
 
 function ordenarDescendente() {
     let listaOrdenada = obtenerListaAlumnosOrdenDesc();
     mostrarAlumnosOrdenadas(listaOrdenada);
+    alert("Orden por Calificaciones *Descendente: " + listaOrdenada);
 }
 
 function mostrarAlumnosOrdenadas(listaOrdenada) {
