@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="./Bsweb3.css">
 </head>
 <body>
+    <div id="alumnos">
+        <h2 class="texto">Lista de Alumnos</h2>
+        <ul id="lista-alumnos">
+            <!-- Aquí se cargarán dinámicamente los alumnos -->
+        </ul>
+    </div>
+    <div id="grupos">
+        <h2 class="texto">Grupos</h2>
+        <ul id="lista-grupos">
+            <!-- Aquí se cargarán dinámicamente los grupos y sus alumnos -->
+        </ul>
+    </div>
     <div id="formulario">
         <h2>Registrar Nuevo Alumno</h2>
         <input type="text" id="nombre" placeholder="Nombre" required><br>
@@ -14,12 +26,7 @@
         <input type="number" id="edad" placeholder="Edad" required><br>
         <button onclick="registrarAlumno()">Registrar Alumno</button>
     </div>
-    <div id="alumnos">
-        <h2 class="texto">Lista de Alumnos</h2>
-        <ul id="lista-alumnos">
-            <!-- Aquí se cargarán dinámicamente los alumnos -->
-        </ul>
-    </div>
+    
     <div id="formulario-grupo">
         <h2>Crear Grupo</h2>
         <button onclick="crearGrupo()">Crear Grupo</button>
@@ -41,25 +48,25 @@
         <button onclick="asignarCalificaciones()">Asignar Calificación</button>
     </div>
     
-    <div id="grupos">
-        <h2 class="texto">Grupos</h2>
-        <ul id="lista-grupos">
-            <!-- Aquí se cargarán dinámicamente los grupos y sus alumnos -->
-        </ul>
-    </div>
     <div class="texto">
         <h2>Gestión de Alumnos</h2>
-        <input type="text" id="buscador" placeholder="Buscar por nombre o apellido" oninput="filtrarAlumnos()">
+        <input type="text" id="buscador" placeholder="Nombre / Apellido" oninput="filtrarAlumnos()">
         <br><br>
+        <button onclick="buscarPorNombre()">Buscar por Nombre</button>
+        <br>
+        <br>
+        <button onclick="buscarPorApellido()">Buscar por Apellido</button>
+        <br>
+        <br>
         <button onclick="calcularPromedioAlumno()">Obtener Promedio del Alumno</button>
         <br>
         <br>
         <button onclick="calcularPromedioGrupo()">Obtener Promedio del Grupo</button>
         <br><br>
-        <button onclick="ordenarAscendente()">Ordenar Ascendente</button>
+        <button onclick="ordenarAscendente()">Ordenar por Calificaciones *Ascendente</button>
         <br>
         <br>
-        <button onclick="ordenarDescendente()">Ordenar Descendente</button>
+        <button onclick="ordenarDescendente()">Ordenar por Calificaciones *Descendente</button>
         <br><br>
         <ul id="lista-alumnos">
             <!-- Aquí se mostrarán los alumnos -->
