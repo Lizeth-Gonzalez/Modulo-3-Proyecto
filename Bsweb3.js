@@ -1,6 +1,23 @@
 let alumnos = [];
 let grupos = {};
 
+function iniciar() {
+    alumnos = JSON.parse(localStorage.getItem("alumnos")) || [];
+    grupos = JSON.parse(localStorage.getItem("grupos")) || {};
+}
+
+iniciar();
+mostrarAlumnos();
+mostrarGrupos();
+mostrarCalificaciones();
+
+function ActualizarBaseDatos() {
+    localStorage.removeItem('alumnos');
+    localStorage.removeItem('grupos');
+    localStorage.setItem('alumnos', JSON.stringify(alumnos));
+    localStorage.setItem('grupos', JSON.stringify(grupos));
+}
+
 function Alumno(nombre, apellidos, edad) {
     this.nombre = nombre;
     this.apellidos = apellidos;
@@ -15,9 +32,9 @@ function Grupo(nombre) {
 }
 
 function registrarAlumno() {
-    let nombre = document.getElementById("nombre").value;
-    let apellidos = document.getElementById("apellidos").value;
-    let edad = document.getElementById("edad").value;
+    const nombre = document.getElementById("nombre").value;
+    const apellidos = document.getElementById("apellidos").value;
+    const edad = document.getElementById("edad").value;
 
     if (nombre.trim() !== '' && apellidos.trim() !== '' && edad.trim() !== '') {
         let nuevoAlumno = new Alumno(nombre, apellidos, edad);
@@ -25,6 +42,7 @@ function registrarAlumno() {
         mostrarAlumnos();
         limpiarFormulario();
         alert("Alumno dado de alta correctamente");
+        ActualizarBaseDatos();
     } else {
         alert("Por favor, ingrese todos los datos del alumno");
     }
@@ -37,6 +55,7 @@ function inscribirAlumnoAGrupo() {
     if (alumnoIndex >= 0 && alumnoIndex < alumnos.length && grupos.hasOwnProperty(grupo)) {
         grupos[grupo].alumnos.push(alumnos[alumnoIndex]);
         mostrarGrupos();
+        ActualizarBaseDatos();
     } else {
         alert("Indice de alumno/nombre de grupo incorrecto o campo vacio");
     }
@@ -49,11 +68,26 @@ function asignarCalificaciones() {
 
     if (alumnoIndex >= 0 && alumnoIndex < alumnos.length) {
         alumnos[alumnoIndex].calificaciones[materia] = calificacion;
-        mostrarAlumnos();
+        mostrarCalificaciones();
         limpiarFormularioCal();
+        ActualizarBaseDatos();
     } else {
         alert("Indice/materia de alumno incorrecto o campo vacio");
     }
+}
+
+function mostrarCalificaciones() {
+    let listaCalificiones = document.getElementById("lista-calificaciones");
+    listaCalificiones.innerHTML = "";
+    alumnos.forEach((alumno, index) => {
+        let li = document.createElement("li");
+        li.textContent = `${index}: ${alumno.nombre} ${alumno.apellidos} - Edad: ${alumno.edad}\n`;
+        listaCalificiones.appendChild(li);
+        for (let materia in alumno.calificaciones) {
+            li.textContent += ` - ${materia}: ${alumno.calificaciones[materia]}\n`;
+            listaCalificiones.appendChild(li);
+        }
+    });
 }
 
 function crearGrupo() {
@@ -62,6 +96,7 @@ function crearGrupo() {
     if (nombreGrupo) {
         grupos[nombreGrupo] = new Grupo(nombreGrupo);
         mostrarGrupos();
+        ActualizarBaseDatos();
     }
 }
 
@@ -73,6 +108,15 @@ function mostrarAlumnos() {
         li.textContent = `${index}: ${alumno.nombre} ${alumno.apellidos} - Edad: ${alumno.edad}`;
         listaAlumnos.appendChild(li);
     });
+}
+
+function limpiarFormulario() {
+    document.getElementById("nombre").value = "";
+    document.getElementById("apellidos").value = "";
+    document.getElementById("edad").value = "";
+    // formulario Inscribir a Grupo
+    document.getElementById("alumnoIndex").value = "";
+    document.getElementById("grupo").value = "";
 }
 
 function limpiarFormularioCal() {
@@ -94,17 +138,6 @@ function mostrarGrupos() {
     }
 }
 
-function limpiarFormulario() {
-    document.getElementById("nombre").value = "";
-    document.getElementById("apellidos").value = "";
-    document.getElementById("edad").value = "";
-}
-
-function limpiarFormularioCal() {
-    document.getElementById("alumnoIndexCal").value = "";
-    document.getElementById("materia").value = "";
-    document.getElementById("calificacion").value = "";
-}
 function buscarPorNombre(nombre) {
     let resultados = alumnos.filter(alumno => alumno.nombre.toLowerCase() === nombre.toLowerCase());
     return resultados;
@@ -174,19 +207,10 @@ function obtenerListaAlumnosOrdenEdadDesc() {
 }
 
 function MostrarListaOrdenada(){
-    
+    // Implementa funcionalidad si es necesario
 }
-
-console.log(alumnos);
-
-function MostrarCalificaciones(){
-
-}
-
 
 //Buscador
-
-
 
 function filtrarAlumnos() {
     let textoBusqueda = document.getElementById('buscador').value.toLowerCase();
@@ -288,5 +312,4 @@ function obtenerListaAlumnosOrdenAsc() {
     });
     return listaOrdenada;
 }
-
 
